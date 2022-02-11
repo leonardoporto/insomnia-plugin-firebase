@@ -1,6 +1,6 @@
 {
   "name": "insomnia-firebase-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "app.js",
   "description": "Recovery firebase uid and token",
   "insomnia": {
