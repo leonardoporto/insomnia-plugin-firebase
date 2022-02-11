@@ -11,7 +11,7 @@ module.exports.templateTags = [{
   description: 'Recovery firebase uid and token',
   args: [
     {
-      displayName: 'info',
+      displayName: 'type',
       type: 'enum',
       options: [
         { displayName: 'uid', value: 'uid' },
@@ -27,21 +27,16 @@ module.exports.templateTags = [{
       displayName: 'Password',
       type: 'string',
       defaultValue: '',
-    },
-    {
-      displayName: 'Firebase Config',
-      type: 'string',
-      defaultValue: '',
     }
   ],
-  async run(context, info, email, password, config) {
-    if (!app && isJson(config)) {
-      app = initializeApp(JSON.parse(config))
+  async run({ context }, type, email, password) {
+    if (!app && context.firebase && isJson(context.firebase.config)) {
+      app = initializeApp(JSON.parse(context.firebase.config))
     }
     if (app && email && password) {
       auth = await getAuth(app)
-      if (info === 'uid') return await getUid(email, password)
-      if (info === 'token') return await generateToken(email, password)
+      if (type === 'uid') return await getUid(email, password)
+      if (type === 'token') return await generateToken(email, password)
     } else {
       return 'waiting values...'
     }

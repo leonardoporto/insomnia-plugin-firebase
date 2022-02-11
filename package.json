@@ -10,6 +10,10 @@
     "publisher": {
       "name": "Leonardo Porto"
     },
+    "images": {
+      "icon": "images/insomnia-plugin-firebase.png",
+      "cover": "images/insomnia-plugin-firebase.png"
+    },
     "unlisted": false
   },
   "keywords": [
