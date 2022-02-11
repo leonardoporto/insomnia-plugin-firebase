@@ -1,5 +1,5 @@
 {
-  "name": "insomnia-firebase-plugin",
+  "name": "insomnia-plugin-firebase",
   "version": "1.0.1",
   "main": "app.js",
   "description": "Recovery firebase uid and token",
@@ -22,12 +22,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/leonardoporto/insomnia-firebase-plugin.git"
+    "url": "https://github.com/leonardoporto/insomnia-plugin-firebase.git"
   },
   "bugs": {
-    "url": "https://github.com/leonardoporto/insomnia-firebase-plugin/issues"
+    "url": "https://github.com/leonardoporto/insomnia-plugin-firebase/issues"
   },
-  "homepage": "https://github.com/leonardoporto/insomnia-firebase-plugin#readme",
+  "homepage": "https://github.com/leonardoporto/insomnia-plugin-firebase#readme",
   "author": "Leonardo Porto <leonardo.porto.souza@gmail.com>",
   "publishConfig": {
     "access": "public"
