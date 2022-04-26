@@ -30,8 +30,8 @@ module.exports.templateTags = [{
     }
   ],
   async run({ context }, type, email, password) {
-    if (!app && context.firebase && isJson(context.firebase.config)) {
-      app = initializeApp(JSON.parse(context.firebase.config))
+    if (!app && context.firebase) {
+      app = initializeApp(context.firebase.config)
     }
     if (app && email && password) {
       auth = await getAuth(app)
@@ -42,15 +42,6 @@ module.exports.templateTags = [{
     }
   },
 }]
-
-function isJson(str) {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
-}
 
 async function getUid(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
