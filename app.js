@@ -1,7 +1,7 @@
 // const Firebase = require('./firebase')
 
 const { getAuth, signInWithEmailAndPassword } = require('firebase/auth')
-const { initializeApp, getApps } = require('firebase/app')
+const { initializeApp, getApp } = require('firebase/app')
 
 let app, auth = null
 
@@ -29,12 +29,12 @@ module.exports.templateTags = [{
       defaultValue: '',
     }
   ],
-  async run({ context }, type, email, password) {
+  async run({ context, meta }, type, email, password) {
     if (!app && context.firebase) {
-      app = initializeApp(context.firebase.config)
+      app = await initializeApp(context.firebase.config, meta.requestId)
     }
     if (app && email && password) {
-      auth = await getAuth(app)
+      auth = await getAuth(getApp(meta.requestId))
       if (type === 'uid') return await getUid(email, password)
       if (type === 'token') return await generateToken(email, password)
     } else {
@@ -63,7 +63,7 @@ async function getUid(email, password) {
           message = "Email ou senha Inválidos"
           break;
       }
-      return { message }
+      return message
     })
 }
 
@@ -77,15 +77,15 @@ async function generateToken(email, password) {
           message = "Email ou senha Inválidos0"
           break;
         case "auth/wrong-password":
-          message = "Senha Invalida"
+          message = "Senha Invalida1"
           break;
         case "auth/user-not-found":
-          message = "Usuário não encontrado"
+          message = "Usuário não encontrado1"
           break;
         default:
           message = "Email ou senha Inválidos1"
           break;
       }
-      return { message }
+      return message
     })
 }
